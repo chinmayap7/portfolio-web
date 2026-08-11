@@ -1,4 +1,4 @@
-import { Github, Linkedin, Twitter, Mail, Phone, MapPin } from "lucide-react";
+import { Github, Linkedin, Mail, Phone, MapPin } from "lucide-react";
 
 const links = [
   { label: "About", href: "#about" },
@@ -13,17 +13,12 @@ const socials = [
   {
     icon: Github,
     label: "GitHub",
-    href: "#",
+    href: "https://github.com/chinmayap7/",
   },
   {
     icon: Linkedin,
     label: "LinkedIn",
-    href: "#",
-  },
-  {
-    icon: Twitter,
-    label: "Twitter",
-    href: "#",
+    href: "https://www.linkedin.com/in/chinmaya-panigrahy-95a35b2b5",
   },
 ];
 

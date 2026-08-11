@@ -22,6 +22,7 @@ export function Navbar() {
     const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
+
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
@@ -29,16 +30,22 @@ export function Navbar() {
     const sections = links
       .map((l) => document.querySelector(l.href))
       .filter((el): el is Element => Boolean(el));
+
     if (!sections.length) return;
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
-          if (e.isIntersecting) setActive(`#${e.target.id}`);
+          if (e.isIntersecting) {
+            setActive(`#${e.target.id}`);
+          }
         });
       },
       { rootMargin: "-45% 0px -50% 0px" },
     );
+
     sections.forEach((s) => observer.observe(s));
+
     return () => observer.disconnect();
   }, []);
 
@@ -52,13 +59,21 @@ export function Navbar() {
             : "bg-surface/50 backdrop-blur-md",
         )}
       >
-        <a href="#home" className="flex min-w-0 items-center gap-2">
+        {/* Logo / Name */}
+        <a
+          href="#home"
+          className="flex min-w-0 items-center gap-2"
+        >
           <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-[image:var(--gradient-accent)] text-primary-foreground">
             <Sparkles className="h-4 w-4" />
           </span>
-          <span className="truncate font-display text-base font-bold">Chinmaya..</span>
+
+          <span className="truncate font-display text-base font-bold">
+            Chinmaya..
+          </span>
         </a>
 
+        {/* Desktop Navigation */}
         <ul className="hidden items-center justify-center gap-1 lg:flex">
           {links.map((link) => (
             <li key={link.href}>
@@ -77,8 +92,13 @@ export function Navbar() {
           ))}
         </ul>
 
-        <div className="flex items-center gap-2">
-          <ThemeToggle />
+        {/* Right Controls */}
+        <div className="flex items-center gap-3">
+          {/* Extra gap only between name and brightness button */}
+          <div className=" ml-5 pl-20">
+            <ThemeToggle />
+          </div>
+
           <a
             href="/resume.pdf"
             download
@@ -87,21 +107,29 @@ export function Navbar() {
             <Download className="h-4 w-4" />
             Resume
           </a>
+
           <button
             type="button"
             aria-label={open ? "Close menu" : "Open menu"}
             onClick={() => setOpen((v) => !v)}
             className="grid h-10 w-10 place-items-center rounded-full border border-border text-foreground transition-colors hover:border-primary lg:hidden"
           >
-            {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+            {open ? (
+              <X className="h-4 w-4" />
+            ) : (
+              <Menu className="h-4 w-4" />
+            )}
           </button>
         </div>
       </nav>
 
+      {/* Mobile Menu */}
       <div
         className={cn(
           "mx-auto mt-2 w-full max-w-6xl overflow-hidden rounded-3xl border border-border bg-surface/95 backdrop-blur-xl transition-all duration-500 lg:hidden",
-          open ? "max-h-[32rem] opacity-100" : "pointer-events-none max-h-0 border-transparent opacity-0",
+          open
+            ? "max-h-[32rem] opacity-100"
+            : "pointer-events-none max-h-0 border-transparent opacity-0",
         )}
       >
         <ul className="flex flex-col p-3">
@@ -116,6 +144,7 @@ export function Navbar() {
               </a>
             </li>
           ))}
+
           <li>
             <a
               href="/resume.pdf"

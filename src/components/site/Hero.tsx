@@ -57,7 +57,7 @@ export function Hero() {
             height={1280}
             fetchPriority="high"
             decoding="async"
-            className="relative w-full rounded-t-[5rem] object-cover sm:rounded-t-[10rem]"
+            className="relative w-[120%] max-w-none -translate-x-2 ..."
           />
         </Reveal>
 

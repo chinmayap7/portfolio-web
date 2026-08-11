@@ -168,7 +168,12 @@ const onSubmit = async (event: FormEvent) => {
   eyebrow="Contact Me"
   title="Let's Connect"
   highlight="& Work Together"
-  description="Have a project, job opportunity, or any questions? Feel free to reach out. I'd be happy to discuss how I can help."
+  description={
+  <span className="font-bold">
+    Have a project, job opportunity, or any questions? Feel free to reach out.
+    I'd be happy to discuss how I can help.
+  </span>
+}
 />
 
       <div className="mt-12 grid gap-6 lg:grid-cols-[0.85fr_1.15fr]">
@@ -213,12 +218,7 @@ const onSubmit = async (event: FormEvent) => {
           ))}
 
           {/* Availability */}
-          <div className="surface-card p-5">
-            <p className="text-sm text-muted-foreground">
-              Currently available for freelance and contract work. Average
-              response time: under 24 hours.
-            </p>
-          </div>
+
         </Reveal>
 
         {/* Contact Form */}
