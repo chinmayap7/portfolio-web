@@ -32,7 +32,7 @@ export function Hero() {
           <Reveal delay={80}>
             <h1 className="mt-4 max-w-full font-display text-3xl leading-[1.05] font-bold sm:mt-6 sm:text-6xl lg:text-7xl">
               I'm{" "}
-              <span className="text-gradient-accent whitespace-nowrap">
+              <span className="text-gradient-accent break-words">
                 Chinmaya Panigrahy
               </span>
             </h1>
