@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { Menu, X, Sparkles, Download } from "lucide-react";
+import { Menu, X, Download } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "./ThemeToggle";
+import cpLogo from "@/assets/cp-logo.jpg";
 
 const links = [
   { label: "Home", href: "#home" },
@@ -20,10 +21,14 @@ export function Navbar() {
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
+
     onScroll();
+
     window.addEventListener("scroll", onScroll, { passive: true });
 
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+    };
   }, []);
 
   useEffect(() => {
@@ -41,7 +46,9 @@ export function Navbar() {
           }
         });
       },
-      { rootMargin: "-45% 0px -50% 0px" },
+      {
+        rootMargin: "-45% 0px -50% 0px",
+      },
     );
 
     sections.forEach((s) => observer.observe(s));
@@ -53,52 +60,52 @@ export function Navbar() {
     <header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-5 sm:pt-5">
       <nav
         className={cn(
-          "mx-auto grid w-full max-w-6xl grid-cols-[auto_1fr_auto] items-center gap-3 rounded-full border border-border px-3 py-2.5 transition-all duration-500 sm:px-4",
+          "mx-auto grid w-full max-w-6xl grid-cols-[1fr_auto] items-center gap-3 rounded-full border border-border px-3 py-2.5 transition-all duration-500 sm:px-4",
           scrolled
             ? "bg-surface/85 shadow-[var(--shadow-card)] backdrop-blur-xl"
             : "bg-surface/50 backdrop-blur-md",
         )}
       >
-        {/* Logo / Name */}
+        {/* Logo + Name */}
         <a
           href="#home"
           className="flex min-w-0 items-center gap-2"
         >
-          <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-[image:var(--gradient-accent)] text-primary-foreground">
-            <Sparkles className="h-4 w-4" />
-          </span>
+          <img
+            src={cpLogo}
+            alt="Chinmaya Panigrahy Logo"
+            className="h-10 w-10 shrink-0 rounded-full object-cover"
+          />
 
-          <span className="truncate font-display text-base font-bold">
+          {/* <span className="whitespace-nowrap font-display text-base font-bold">
             Chinmaya..
-          </span>
+          </span> */}
         </a>
 
         {/* Desktop Navigation */}
-        <ul className="hidden items-center justify-center gap-1 lg:flex">
-          {links.map((link) => (
-            <li key={link.href}>
-              <a
-                href={link.href}
-                className={cn(
-                  "relative rounded-full px-3 py-2 text-sm font-medium transition-colors duration-300",
-                  active === link.href
-                    ? "bg-primary text-primary-foreground"
-                    : "text-muted-foreground hover:text-foreground",
-                )}
-              >
-                {link.label}
-              </a>
-            </li>
-          ))}
-        </ul>
+        <div className="flex items-center gap-2">
+          <ul className="hidden items-center justify-center gap-1 lg:flex">
+            {links.map((link) => (
+              <li key={link.href}>
+                <a
+                  href={link.href}
+                  className={cn(
+                    "relative rounded-full px-3 py-2 text-sm font-medium transition-colors duration-300",
+                    active === link.href
+                      ? "bg-primary text-primary-foreground"
+                      : "text-muted-foreground hover:text-foreground",
+                  )}
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
 
-        {/* Right Controls */}
-        <div className="flex items-center gap-3">
-          {/* Extra gap only between name and brightness button */}
-          <div className=" ml-5 pl-20">
-            <ThemeToggle />
-          </div>
+          {/* Theme Button */}
+          <ThemeToggle />
 
+          {/* Resume */}
           <a
             href="/resume.pdf"
             download
@@ -108,6 +115,7 @@ export function Navbar() {
             Resume
           </a>
 
+          {/* Mobile Menu */}
           <button
             type="button"
             aria-label={open ? "Close menu" : "Open menu"}
@@ -123,7 +131,7 @@ export function Navbar() {
         </div>
       </nav>
 
-      {/* Mobile Menu */}
+      {/* Mobile Navigation */}
       <div
         className={cn(
           "mx-auto mt-2 w-full max-w-6xl overflow-hidden rounded-3xl border border-border bg-surface/95 backdrop-blur-xl transition-all duration-500 lg:hidden",
@@ -138,13 +146,19 @@ export function Navbar() {
               <a
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className="block rounded-2xl px-4 py-3 text-sm font-medium text-muted-foreground transition-colors hover:bg-surface-2 hover:text-foreground"
+                className={cn(
+                  "block rounded-2xl px-4 py-3 text-sm font-medium transition-colors",
+                  active === link.href
+                    ? "bg-primary text-primary-foreground"
+                    : "text-muted-foreground hover:bg-surface-2 hover:text-foreground",
+                )}
               >
                 {link.label}
               </a>
             </li>
           ))}
 
+          {/* Mobile Resume */}
           <li>
             <a
               href="/resume.pdf"

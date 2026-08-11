@@ -50,14 +50,14 @@ export function Hero() {
           className="relative col-start-2 row-start-1 w-full self-center lg:row-span-2 lg:ml-auto lg:max-w-md"
         >
           <img
-            src={portrait}
-            alt="Chinmaya Panigrahy - MERN Stack Developer"
-            width={1024}
-            height={1280}
-            fetchPriority="high"
-            decoding="async"
-            className="relative w-[120%] max-w-none -translate-x-2 rounded-t-[5rem] object-cover sm:rounded-t-[10rem]"
-          />
+  src={portrait}
+  alt="Chinmaya Panigrahy - MERN Stack Developer"
+  width={1024}
+  height={1280}
+  fetchPriority="high"
+  decoding="async"
+  className="relative w-[120%] max-w-none -translate-x-2 rounded-t-[2.5rem] object-cover sm:rounded-t-[4rem]"
+/>
         </Reveal>
 
         {/* Details */}
