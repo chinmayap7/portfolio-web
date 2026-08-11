@@ -71,35 +71,57 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 }
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
-  head: () => ({
-    meta: [
-      { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Arjun Mehta — MERN Stack Developer" },
-      {
-        name: "description",
-        content:
-          "Portfolio of Arjun Mehta, a MERN stack developer building fast, scalable web products.",
-      },
-      { name: "author", content: "Arjun Mehta" },
-      { property: "og:type", content: "website" },
-      { property: "og:site_name", content: "Arjun Mehta" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-    links: [
-      {
-        rel: "stylesheet",
-        href: appCss,
-      },
-      { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      {
-        rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap",
-      },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
-    ],
-  }),
+ head: () => ({
+  meta: [
+    { charSet: "utf-8" },
+    { name: "viewport", content: "width=device-width, initial-scale=1" },
+
+    // Browser tab title
+    { title: "Chinmaya Panigrahy | MERN Stack Developer" },
+
+    // SEO description
+    {
+      name: "description",
+      content:
+        "Portfolio of Chinmaya Panigrahy, a MERN Stack Developer building responsive and user-friendly web applications.",
+    },
+
+    // Author
+    { name: "author", content: "Chinmaya Panigrahy" },
+
+    { property: "og:type", content: "website" },
+    { property: "og:site_name", content: "Chinmaya Panigrahy" },
+
+    { name: "twitter:card", content: "summary_large_image" },
+  ],
+
+  links: [
+    {
+      rel: "stylesheet",
+      href: appCss,
+    },
+
+    { rel: "preconnect", href: "https://fonts.googleapis.com" },
+
+    {
+      rel: "preconnect",
+      href: "https://fonts.gstatic.com",
+      crossOrigin: "anonymous",
+    },
+
+    {
+      rel: "stylesheet",
+      href: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap",
+    },
+
+    // Favicon
+    {
+      rel: "icon",
+      href: "/favicon.ico",
+      type: "image/x-icon",
+    },
+  ],
+}),
 
   shellComponent: RootShell,
   component: RootComponent,
