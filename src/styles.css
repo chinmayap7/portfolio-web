@@ -1,0 +1,252 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Design system: dark charcoal canvas + amber/orange accent.
+ * All colors are oklch tokens. Never hardcode colors in components.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 8px);
+  --radius-md: calc(var(--radius) - 4px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 8px);
+  --radius-2xl: calc(var(--radius) + 16px);
+  --radius-3xl: calc(var(--radius) + 24px);
+  --radius-4xl: calc(var(--radius) + 32px);
+
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-ring-offset-background: var(--background);
+}
+
+:root {
+  --radius: 1rem;
+
+  --background: oklch(0.17 0.006 60);
+  --foreground: oklch(0.97 0.005 80);
+
+  --surface: oklch(0.21 0.007 60);
+  --surface-2: oklch(0.25 0.008 60);
+
+  --card: oklch(0.21 0.007 60);
+  --card-foreground: oklch(0.97 0.005 80);
+  --popover: oklch(0.21 0.007 60);
+  --popover-foreground: oklch(0.97 0.005 80);
+
+  --primary: oklch(0.76 0.166 66);
+  --primary-foreground: oklch(0.18 0.02 60);
+
+  --secondary: oklch(0.25 0.008 60);
+  --secondary-foreground: oklch(0.97 0.005 80);
+
+  --muted: oklch(0.25 0.008 60);
+  --muted-foreground: oklch(0.7 0.012 70);
+
+  --accent: oklch(0.8 0.15 78);
+  --accent-foreground: oklch(0.18 0.02 60);
+
+  --destructive: oklch(0.62 0.21 25);
+  --destructive-foreground: oklch(0.98 0.005 80);
+
+  --border: oklch(0.3 0.01 60);
+  --input: oklch(0.3 0.01 60);
+  --ring: oklch(0.76 0.166 66);
+
+  --gradient-accent: linear-gradient(
+    100deg,
+    oklch(0.8 0.15 78),
+    oklch(0.72 0.17 55)
+  );
+  --gradient-surface: linear-gradient(
+    160deg,
+    oklch(0.24 0.008 60),
+    oklch(0.19 0.006 60)
+  );
+  --shadow-glow: 0 18px 60px -18px oklch(0.76 0.166 66 / 0.45);
+  --shadow-card: 0 24px 60px -30px oklch(0 0 0 / 0.9);
+  --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Light mode: toggled by adding `.light` to <html> */
+.light {
+  --background: oklch(0.98 0.005 80);
+  --foreground: oklch(0.2 0.01 60);
+
+  --surface: oklch(1 0 0);
+  --surface-2: oklch(0.96 0.006 80);
+
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.2 0.01 60);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.2 0.01 60);
+
+  --primary: oklch(0.68 0.17 58);
+  --primary-foreground: oklch(0.99 0.005 80);
+
+  --secondary: oklch(0.94 0.008 80);
+  --secondary-foreground: oklch(0.22 0.01 60);
+
+  --muted: oklch(0.94 0.008 80);
+  --muted-foreground: oklch(0.48 0.012 70);
+
+  --accent: oklch(0.74 0.15 72);
+  --accent-foreground: oklch(0.2 0.02 60);
+
+  --border: oklch(0.9 0.008 70);
+  --input: oklch(0.9 0.008 70);
+  --ring: oklch(0.68 0.17 58);
+
+  --gradient-accent: linear-gradient(100deg, oklch(0.76 0.15 78), oklch(0.66 0.17 52));
+  --gradient-surface: linear-gradient(160deg, oklch(1 0 0), oklch(0.97 0.006 80));
+  --shadow-glow: 0 18px 60px -18px oklch(0.68 0.17 58 / 0.35);
+  --shadow-card: 0 24px 60px -34px oklch(0.3 0.02 60 / 0.35);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+
+  ::selection {
+    background: var(--primary);
+    color: var(--primary-foreground);
+  }
+}
+
+@utility text-gradient-accent {
+  background-image: var(--gradient-accent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility surface-card {
+  background-image: var(--gradient-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-card);
+  transition:
+    transform 0.5s var(--ease-soft),
+    border-color 0.4s var(--ease-soft),
+    box-shadow 0.5s var(--ease-soft);
+
+  &:hover {
+    transform: translateY(-6px);
+    border-color: color-mix(in oklab, var(--primary) 55%, transparent);
+    box-shadow: var(--shadow-glow);
+  }
+}
+
+@utility glow-ring {
+  box-shadow: var(--shadow-glow);
+}
+
+@utility section-shell {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 80rem;
+  padding-inline: 1.25rem;
+  padding-block: 5rem;
+
+  @media (min-width: 768px) {
+    padding-inline: 2rem;
+    padding-block: 7rem;
+  }
+}
+
+@utility reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.7s var(--ease-soft),
+    transform 0.7s var(--ease-soft);
+
+  &[data-visible="true"] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@utility marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 28s linear infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes float-soft {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@utility animate-float {
+  animation: float-soft 6s ease-in-out infinite;
+}
+
+@utility animate-spin-slow {
+  animation: spin-slow 14s linear infinite;
+}
